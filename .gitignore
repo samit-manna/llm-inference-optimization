@@ -1,0 +1,52 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+.env
+*.env
+!*.env.example
+
+# macOS
+.DS_Store
+
+# results (keep JSON artifacts, ignore large models)
+models/*
+!models/.gitkeep
+
+# editor
+.vscode/
+.idea/
+
+# terraform
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+*.auto.tfvars
+*.auto.tfvars.json
+tfplan
+tfplan.*
+
+# llama.cpp (large submodule - exclude from git)
+llama.cpp/
+local/llama.cpp/
+
+# AWS credentials and config
+.aws/
+aws-credentials.json
+
+# Azure credentials
+.azure/
+azure-credentials.json
+
+# GCP credentials
+.gcp/
+gcp-credentials.json
+**/service-account-key.json
+
+# Kubernetes config
+kubeconfig
+.kube/
+*.kubeconfig*.env

@@ -1,0 +1,108 @@
+# Queue-based autoscaling approach
+# Uses SQS queue depth and processing rate for more predictive scaling
+
+resource "aws_sqs_queue" "llm_requests" {
+  name                       = "${var.name}-llm-requests"
+  visibility_timeout_seconds = 300
+  
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.llm_dlq.arn
+    maxReceiveCount     = 3
+  })
+}
+
+resource "aws_sqs_queue" "llm_dlq" {
+  name = "${var.name}-llm-dlq"
+}
+
+# Lambda function to process queue and invoke SageMaker
+resource "aws_lambda_function" "queue_processor" {
+  filename         = "queue_processor.zip"
+  function_name    = "${var.name}-queue-processor"
+  role            = aws_iam_role.queue_processor_role.arn
+  handler         = "processor.handler"
+  runtime         = "python3.12"
+  timeout         = 300
+
+  environment {
+    variables = {
+      ENDPOINT_NAME = aws_sagemaker_endpoint.ep.name
+      REGION       = var.region
+    }
+  }
+}
+
+# SQS-based autoscaling
+resource "aws_appautoscaling_policy" "queue_based" {
+  name               = "${var.name}-queue-based"
+  policy_type        = "TargetTrackingScaling"
+  resource_id        = aws_appautoscaling_target.ep.resource_id
+  scalable_dimension = aws_appautoscaling_target.ep.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.ep.service_namespace
+
+  target_tracking_scaling_policy_configuration {
+    # Target: process messages faster than they arrive
+    target_value       = 50  # Queue depth
+    scale_in_cooldown  = 300
+    scale_out_cooldown = 60
+
+    customized_metric_specification {
+      namespace   = "AWS/SQS"
+      metric_name = "ApproximateNumberOfVisibleMessages"
+      statistic   = "Average"
+      dimensions {
+        name  = "QueueName"
+        value = aws_sqs_queue.llm_requests.name
+      }
+    }
+  }
+}
+
+# CloudWatch dashboard for monitoring
+resource "aws_cloudwatch_dashboard" "llm_monitoring" {
+  dashboard_name = "${var.name}-llm-dashboard"
+
+  dashboard_body = jsonencode({
+    widgets = [
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            ["LLM/Serving", "TokensGenerated", "EndpointName", aws_sagemaker_endpoint.ep.name],
+            [".", "RequestCount", ".", "."],
+            ["AWS/SageMaker", "CPUUtilization", "EndpointName", aws_sagemaker_endpoint.ep.name, "VariantName", "AllTraffic"]
+          ]
+          view    = "timeSeries"
+          stacked = false
+          region  = var.region
+          title   = "LLM Performance Metrics"
+          period  = 60
+          stat    = "Sum"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 0
+        y      = 6
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            [{ expression = "m1/60", label = "Aggregate Tokens/Second" }],
+            ["LLM/Serving", "TokensGenerated", "EndpointName", aws_sagemaker_endpoint.ep.name, { id = "m1", visible = false }]
+          ]
+          view   = "timeSeries"
+          region = var.region
+          title  = "Aggregate Throughput"
+          period = 60
+        }
+      }
+    ]
+  })
+}

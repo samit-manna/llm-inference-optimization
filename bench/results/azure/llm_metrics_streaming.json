@@ -1,0 +1,16 @@
+{
+  "mode": "streaming",
+  "total_requests": 3851,
+  "successful_requests": 3851,
+  "success_rate": 100.0,
+  "avg_tokens_per_second": 25.386459089621837,
+  "p95_tokens_per_second": 30.371826200507975,
+  "aggregate_tokens_per_second": 804.7068007839418,
+  "avg_total_time_ms": 2499.8937462833505,
+  "p95_total_time_ms": 2724.2604795028456,
+  "avg_ttft_ms": 668.1834762769263,
+  "p95_ttft_ms": 886.7022704944247,
+  "requests_per_second": 12.777653167766722,
+  "total_duration_sec": 301.38554783398286,
+  "total_tokens_generated": 242527
+}

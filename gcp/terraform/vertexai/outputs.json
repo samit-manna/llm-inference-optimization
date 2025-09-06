@@ -1,0 +1,17 @@
+{
+  "endpoint_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sam-vllm-endpoint"
+  },
+  "endpoint_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sam-vllm-endpoint"
+  },
+  "model_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "projects/345235728540/locations/us-east1/models/3053286615729307648"
+  }
+}

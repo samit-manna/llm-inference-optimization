@@ -1,0 +1,27 @@
+Cost per 1M Tokens Analysis
+========================================
+
+Platform: local
+  Throughput: 41.5 TPS
+  Hourly Cost: $0.0045
+  Cost per 1M Tokens: $0.0301
+  Tokens per Hour: 149,570
+
+Platform: aws
+  Throughput: 950.0 TPS
+  Hourly Cost: $1.5150
+  Cost per 1M Tokens: $0.4430
+  Tokens per Hour: 3,419,940
+
+Platform: gcp
+  Throughput: 530.7 TPS
+  Hourly Cost: $0.8800
+  Cost per 1M Tokens: $0.4606
+  Tokens per Hour: 1,910,357
+
+Platform: azure
+  Throughput: 822.4 TPS
+  Hourly Cost: $3.4000
+  Cost per 1M Tokens: $1.1484
+  Tokens per Hour: 2,960,598
+

@@ -1,0 +1,12 @@
+# Example inputs — adjust to your contract / price list
+region: us-east1
+machine_type: g2-standard-8
+accelerator: NVIDIA_L4
+accelerator_count: 1
+hourly_prices:
+  machine_usd_per_hour: 0.8536   # placeholder
+  l4_usd_per_hour: 0.72         # placeholder
+  storage_usd_per_hour: 0.02
+  misc_overhead_usd_per_hour: 0.00
+# Networking is usually negligible during internal tests; include egress if you cross regions
+egress_usd_per_gb: 0.00

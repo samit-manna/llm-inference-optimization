@@ -1,0 +1,231 @@
+{
+  "summary": {
+    "url": "http://localhost:8080/v1/chat/completions",
+    "model": "llama",
+    "prompt_preview": "Summarize Kubernetes vs Docker Swarm in 3 bullets.",
+    "max_tokens": 64,
+    "n_requests": 30,
+    "success": 30,
+    "errors": 0,
+    "ttft_s": {
+      "p50": 0.031212,
+      "p95": 0.032374
+    },
+    "total_s": {
+      "p50": 1.665876,
+      "p95": 1.669167
+    }
+  },
+  "requests": [
+    {
+      "ok": true,
+      "ttft_s": 0.06197312498989049,
+      "total_s": 1.687333874986507,
+      "error": null,
+      "bytes": 15964
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03047508400049992,
+      "total_s": 1.6563485840015346,
+      "error": null,
+      "bytes": 15962
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.032374499991419725,
+      "total_s": 1.6606781250011409,
+      "error": null,
+      "bytes": 15964
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.030479084001854062,
+      "total_s": 1.663076209006249,
+      "error": null,
+      "bytes": 15967
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.030766083000344224,
+      "total_s": 1.6617235000012442,
+      "error": null,
+      "bytes": 15968
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03081591599038802,
+      "total_s": 1.6538792079954874,
+      "error": null,
+      "bytes": 15969
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.028767666008207016,
+      "total_s": 1.6601261659961892,
+      "error": null,
+      "bytes": 15970
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03127670899266377,
+      "total_s": 1.662589375002426,
+      "error": null,
+      "bytes": 15966
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03122095800063107,
+      "total_s": 1.6630115000007208,
+      "error": null,
+      "bytes": 15968
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.031182042002910748,
+      "total_s": 1.6658268329920247,
+      "error": null,
+      "bytes": 15968
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03086254099616781,
+      "total_s": 1.665636165998876,
+      "error": null,
+      "bytes": 15964
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03191020899976138,
+      "total_s": 1.665626333997352,
+      "error": null,
+      "bytes": 15967
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.031302000003051944,
+      "total_s": 1.66540562499722,
+      "error": null,
+      "bytes": 15964
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.030908125001587905,
+      "total_s": 1.66597291699145,
+      "error": null,
+      "bytes": 15967
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.031051041005412117,
+      "total_s": 1.6656147500034422,
+      "error": null,
+      "bytes": 15967
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03166470800351817,
+      "total_s": 1.6657784999988507,
+      "error": null,
+      "bytes": 15966
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.031025417003547773,
+      "total_s": 1.6659247080096975,
+      "error": null,
+      "bytes": 15968
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03134333300113212,
+      "total_s": 1.6658164580003358,
+      "error": null,
+      "bytes": 15963
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03193499999179039,
+      "total_s": 1.6690127089968883,
+      "error": null,
+      "bytes": 15966
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.031216832998325117,
+      "total_s": 1.669167166997795,
+      "error": null,
+      "bytes": 15966
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.031208125001285225,
+      "total_s": 1.6681108750053681,
+      "error": null,
+      "bytes": 15968
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03140870800416451,
+      "total_s": 1.6686787499929778,
+      "error": null,
+      "bytes": 15965
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.0308899579977151,
+      "total_s": 1.6680789160018321,
+      "error": null,
+      "bytes": 15966
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03149170799588319,
+      "total_s": 1.6686646659945836,
+      "error": null,
+      "bytes": 15966
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.031239000003552064,
+      "total_s": 1.6673251659958623,
+      "error": null,
+      "bytes": 15968
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.031113999997614883,
+      "total_s": 1.6689466670068214,
+      "error": null,
+      "bytes": 15967
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03111487498972565,
+      "total_s": 1.6688943749904865,
+      "error": null,
+      "bytes": 15968
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03130541600694414,
+      "total_s": 1.66901041600795,
+      "error": null,
+      "bytes": 15967
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.030160791997332126,
+      "total_s": 1.6686725420004223,
+      "error": null,
+      "bytes": 15968
+    },
+    {
+      "ok": true,
+      "ttft_s": 0.03125370800262317,
+      "total_s": 1.66879120800877,
+      "error": null,
+      "bytes": 15969
+    }
+  ]
+}

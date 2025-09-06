@@ -1,0 +1,5 @@
+hostname  = "vllm.sam.tld"
+hf_token  = ""
+name = "sam"
+proxy_image = "us-east1-docker.pkg.dev/<project-id>/llm-images/vllm-proxy:v0.1"
+instance_hourly_usd = 0.8536

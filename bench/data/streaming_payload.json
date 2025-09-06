@@ -1,0 +1,9 @@
+{
+  "model": "llama",
+  "messages": [
+    {"role": "user", "content": "Summarize Kubernetes vs Docker Swarm in 3 bullets."}
+  ],
+  "max_tokens": 64,
+  "temperature": 0.7,
+  "stream": true
+}

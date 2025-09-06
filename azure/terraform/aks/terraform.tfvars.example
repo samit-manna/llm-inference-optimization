@@ -1,0 +1,4 @@
+subscription_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+name = "sam"
+acr_name  = "llmacr123456"      # unique
+gpu_vm_size = "Standard_NV36adms_A10_v5"  # 36 vCPUs, 440 GB RAM, 1x A10 GPU

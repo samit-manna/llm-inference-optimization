@@ -1,0 +1,9 @@
+{
+  "name": "steady_5m",
+  "duration_sec": 300,
+  "target_rps": 20,
+  "concurrency": 24,
+  "max_tokens": 256,
+  "temperature": 0.2,
+  "prompt": "Summarize Kubernetes vs Docker Swarm in 3 bullets."
+}

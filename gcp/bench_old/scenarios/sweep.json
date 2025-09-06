@@ -1,0 +1,9 @@
+{
+  "name": "sweep",
+  "runs": [
+    {"target_rps": 12, "concurrency": 16, "max_tokens": 128, "temperature": 0.0},
+    {"target_rps": 18, "concurrency": 24, "max_tokens": 128, "temperature": 0.0},
+    {"target_rps": 24, "concurrency": 32, "max_tokens": 256, "temperature": 0.2}
+  ],
+  "prompt": "Explain the tradeoffs of Gateway API vs Ingress for multi-tenant SaaS."
+}

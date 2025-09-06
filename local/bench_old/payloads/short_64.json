@@ -1,0 +1,10 @@
+{
+  "model": "llama",
+  "messages": [
+    {"role": "system", "content": "You are a concise assistant."},
+    {"role": "user", "content": "Summarize Kubernetes vs Docker Swarm in 3 bullets."}
+  ],
+  "max_tokens": 64,
+  "temperature": 0,
+  "stream": true
+}
