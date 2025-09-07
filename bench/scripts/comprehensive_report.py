@@ -292,7 +292,9 @@ def generate_cost_analysis(all_data):
             openai_cost = 30.0  # GPT-4 input cost per 1M tokens
             cost_ratio = cost_per_million_tokens / openai_cost
             if cost_ratio < 1:
-                comparison = f"{cost_ratio:.1f}x cheaper"
+                # Calculate how many times cheaper (inverse ratio)
+                cheaper_ratio = openai_cost / cost_per_million_tokens
+                comparison = f"{cheaper_ratio:.1f}x cheaper"
             else:
                 comparison = f"{cost_ratio:.1f}x more expensive"
             
