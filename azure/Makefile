@@ -94,10 +94,12 @@ deploy-proxy:
 # Step 3: Deploy K8s resources
 deploy-k8s:
 	@echo "☸️  Deploying K8s resources..."
-# 	@echo "Deploying K8s resources without custom resources"
-# 	cd terraform/k8s && terraform init && terraform apply --var "create_custom_resources=false" -auto-approve
+	$(eval PROXY_IMAGE := $(ACR_NAME).azurecr.io/$(IMAGE_NAME):$(IMAGE_TAG))
+	@echo "Using proxy image: $(PROXY_IMAGE)"
+	@echo "Deploying K8s resources without custom resources"
+	cd terraform/k8s && terraform init && terraform apply --var "create_custom_resources=false" --var "proxy_image=$(PROXY_IMAGE)" -auto-approve
 	@echo "Deploying K8s resources with custom resources"
-	cd terraform/k8s && terraform init && terraform apply --var "create_custom_resources=true" -auto-approve
+	cd terraform/k8s && terraform init && terraform apply --var "create_custom_resources=true" --var "proxy_image=$(PROXY_IMAGE)" -auto-approve
 	@echo "✅ K8s resources deployment complete!"
 	@echo ""
 	@echo "Waiting for services to be ready..."

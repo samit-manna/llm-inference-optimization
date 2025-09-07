@@ -18,4 +18,10 @@ resource "azurerm_kubernetes_cluster_node_pool" "gpu" {
   max_count             = 4
 
   temporary_name_for_rotation = "gpupooltmp"
+
+  upgrade_settings {
+    drain_timeout_in_minutes = 0
+    max_surge = "10%"
+    node_soak_duration_in_minutes = 0
+  }
 }

@@ -15,12 +15,13 @@ resource "kubernetes_deployment" "vllm" {
     template {
       metadata { labels = { app = "vllm" } }
       spec {
-        # GKE L4 nodes advertise this label
-        node_selector = { "cloud.google.com/gke-accelerator" = "nvidia-l4" }
+        # AKS GPU nodes use this label
+        node_selector = { "sku" = "gpu" }
 
         toleration {
-          key      = "nvidia.com/gpu"
-          operator = "Exists"
+          key      = "sku"
+          value    = "gpu"
+          operator = "Equal"
           effect   = "NoSchedule"
         }
 
@@ -38,14 +39,13 @@ resource "kubernetes_deployment" "vllm" {
             "--host", "0.0.0.0", "--port", "8000",
             "--model", "hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4",
             "--max-model-len", "8192",
-            "--gpu-memory-utilization", "0.95",
+            "--gpu-memory-utilization", "0.89",
             "--enforce-eager",
             "--trust-remote-code",
             "--disable-log-requests",
             "--served-model-name", "llama",
             "--max-num-batched-tokens", "32768",
-            "--max-num-seqs", "160",
-            "--device", "cuda"
+            "--max-num-seqs", "160"
           ]
           env {
             name = "HUGGING_FACE_HUB_TOKEN"

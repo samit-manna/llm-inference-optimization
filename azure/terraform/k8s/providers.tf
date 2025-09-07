@@ -20,26 +20,26 @@ terraform {
   }
 }
 
-variable "kubeconfig_path" {
-  type        = string
-  description = "Path to kubeconfig (after running gcloud get-credentials)"
-  default     = "~/.kube/config"
-}
-
-variable "kube_context" {
-  type        = string
-  description = "Kubectl context for your GKE cluster"
-  default     = "" # auto-pick current context if empty
+# Read AKS cluster information from the AKS Terraform state
+data "terraform_remote_state" "aks" {
+  backend = "local"
+  config = {
+    path = "../aks/terraform.tfstate"
+  }
 }
 
 provider "kubernetes" {
-  config_path    = var.kubeconfig_path
-  config_context = var.kube_context != "" ? var.kube_context : null
+  host                   = data.terraform_remote_state.aks.outputs.host
+  client_certificate     = base64decode(data.terraform_remote_state.aks.outputs.client_certificate)
+  client_key             = base64decode(data.terraform_remote_state.aks.outputs.client_key)
+  cluster_ca_certificate = base64decode(data.terraform_remote_state.aks.outputs.cluster_ca_certificate)
 }
 
 provider "helm" {
   kubernetes = {
-    config_path    = var.kubeconfig_path
-    config_context = var.kube_context != "" ? var.kube_context : null
+    host                   = data.terraform_remote_state.aks.outputs.host
+    client_certificate     = base64decode(data.terraform_remote_state.aks.outputs.client_certificate)
+    client_key             = base64decode(data.terraform_remote_state.aks.outputs.client_key)
+    cluster_ca_certificate = base64decode(data.terraform_remote_state.aks.outputs.cluster_ca_certificate)
   }
 }

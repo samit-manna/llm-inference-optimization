@@ -1,25 +1,72 @@
-resource "helm_release" "nvidia_device_plugin" {
-  name             = "nvidia-device-plugin"
-  repository       = "https://nvidia.github.io/k8s-device-plugin"
-  chart            = "nvidia-device-plugin"
-  version          = "0.16.2"
-  namespace        = "kube-system"
-  create_namespace = false
-  wait             = true
-  timeout          = 600
-
-  values = [yamlencode({
-    nodeSelector = {
-      "cloud.google.com/gke-accelerator" = "nvidia-l4"
-    }
-    tolerations = [
-      {
-        key      = "nvidia.com/gpu"
-        operator = "Exists"
-        effect   = "NoSchedule"
+# Use direct Kubernetes manifest instead of Helm chart for better AKS compatibility
+resource "kubernetes_manifest" "nvidia_device_plugin" {
+  manifest = {
+    apiVersion = "apps/v1"
+    kind       = "DaemonSet"
+    metadata = {
+      name      = "nvidia-device-plugin-daemonset"
+      namespace = "kube-system"
+      labels = {
+        "k8s-app" = "nvidia-device-plugin"
       }
-    ]
-    # optional: args to be more forgiving on startup
-    args = ["--fail-on-init-error=false"]
-  })]
+    }
+    spec = {
+      selector = {
+        matchLabels = {
+          name = "nvidia-device-plugin-ds"
+        }
+      }
+      updateStrategy = {
+        type = "RollingUpdate"
+      }
+      template = {
+        metadata = {
+          labels = {
+            name = "nvidia-device-plugin-ds"
+          }
+        }
+        spec = {
+          tolerations = [
+            {
+              key      = "sku"
+              value    = "gpu"
+              operator = "Equal"
+              effect   = "NoSchedule"
+            }
+          ]
+          nodeSelector = {
+            sku = "gpu"
+          }
+          priorityClassName = "system-node-critical"
+          containers = [
+            {
+              image = "nvcr.io/nvidia/k8s-device-plugin:v0.16.2"
+              name  = "nvidia-device-plugin-ctr"
+              args  = ["--fail-on-init-error=false"]
+              securityContext = {
+                allowPrivilegeEscalation = false
+                capabilities = {
+                  drop = ["ALL"]
+                }
+              }
+              volumeMounts = [
+                {
+                  name      = "device-plugin"
+                  mountPath = "/var/lib/kubelet/device-plugins"
+                }
+              ]
+            }
+          ]
+          volumes = [
+            {
+              name = "device-plugin"
+              hostPath = {
+                path = "/var/lib/kubelet/device-plugins"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
 }

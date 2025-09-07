@@ -18,7 +18,7 @@ variable "hf_token" {
 variable "vllm_image" {
   description = "Docker image for the VLLM"
   type        = string
-  default     = "vllm/vllm-openai:v0.5.4"
+  default     = "vllm/vllm-openai:latest"
 }
 
 variable "proxy_image" {

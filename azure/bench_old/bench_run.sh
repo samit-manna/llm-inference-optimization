@@ -1,4 +1,4 @@
-IP=4.157.158.4
+IP=20.237.72.234
 
 # Common flags:
 # -t 15s: prevent client-side timeouts under load

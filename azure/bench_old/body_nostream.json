@@ -1,5 +1,5 @@
 {
-  "model": "llama-3.1-8b-awq",
+  "model": "llama",
   "messages": [{"role": "user", "content": "Summarize Kubernetes vs Docker Swarm in 3 bullets."}],
   "stream": false,
   "max_tokens": 64
