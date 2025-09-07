@@ -1,6 +1,6 @@
 # 🚀 LLM Inference Performance Comparison Report
 
-*Generated on 2025-09-07 21:43:32*
+*Generated on 2025-09-07 22:18:38*
 
 ## 📈 Executive Summary
 
@@ -10,6 +10,17 @@
 | AWS | 950.0 | 2128.9 | 2123.0 | 557013 | 5.0 |
 | AZURE | 822.4 | 2488.2 | 668.2 | 490463 | 5.0 |
 | GCP | 530.7 | 3856.8 | 1278.6 | 318287 | 5.1 |
+
+
+## 📈 Performance Visualizations
+
+### Performance Comparison Charts
+![Performance Charts](charts/performance_charts.png)
+
+### Platform Overview (Normalized Metrics)
+![Performance Radar](charts/performance_radar.png)
+
+*Charts show comparative performance across all platforms. Higher values are better for all metrics.*
 
 ## 📊 Detailed Performance Metrics
 
